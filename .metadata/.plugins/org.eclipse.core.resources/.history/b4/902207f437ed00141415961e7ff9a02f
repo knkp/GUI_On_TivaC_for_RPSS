@@ -1,0 +1,8 @@
+#ifndef RPSS_System_h
+#define RPSS_System_h
+
+#include "RPSS_handler.h"
+
+void RPSS_System_init(void);
+
+#endif

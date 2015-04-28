@@ -2,39 +2,14 @@
 **** Build of configuration Debug for project lab10 ****
 
 "C:\\ti\\ccsv6\\utils\\bin\\gmake" -k all 
-'Building file: ../Kentec320x240x16_ssd2119_8bit.c'
+'Building file: ../RPSS_display_driver.c'
 'Invoking: ARM Compiler'
-"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 --abi=eabi -me --include_path="C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include" --include_path="C:/ti/TivaWare_C_Series-2.1.0.12573" -g --define=ccs="ccs" --define=PART_TM4C123GH6PM --define=TARGET_IS_BLIZZARD_RB1 --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="Kentec320x240x16_ssd2119_8bit.pp"  "../Kentec320x240x16_ssd2119_8bit.c"
-'Finished building: ../Kentec320x240x16_ssd2119_8bit.c'
-' '
-'Building file: ../grlib_demo.c'
-'Invoking: ARM Compiler'
-"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 --abi=eabi -me --include_path="C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include" --include_path="C:/ti/TivaWare_C_Series-2.1.0.12573" -g --define=ccs="ccs" --define=PART_TM4C123GH6PM --define=TARGET_IS_BLIZZARD_RB1 --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="grlib_demo.pp"  "../grlib_demo.c"
-'Finished building: ../grlib_demo.c'
-' '
-'Building file: ../images.c'
-'Invoking: ARM Compiler'
-"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 --abi=eabi -me --include_path="C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include" --include_path="C:/ti/TivaWare_C_Series-2.1.0.12573" -g --define=ccs="ccs" --define=PART_TM4C123GH6PM --define=TARGET_IS_BLIZZARD_RB1 --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="images.pp"  "../images.c"
-'Finished building: ../images.c'
-' '
-'Building file: ../tm4c123gh6pm_startup_ccs.c'
-'Invoking: ARM Compiler'
-"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 --abi=eabi -me --include_path="C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include" --include_path="C:/ti/TivaWare_C_Series-2.1.0.12573" -g --define=ccs="ccs" --define=PART_TM4C123GH6PM --define=TARGET_IS_BLIZZARD_RB1 --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="tm4c123gh6pm_startup_ccs.pp"  "../tm4c123gh6pm_startup_ccs.c"
-'Finished building: ../tm4c123gh6pm_startup_ccs.c'
-' '
-'Building file: ../touch.c'
-'Invoking: ARM Compiler'
-"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 --abi=eabi -me --include_path="C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include" --include_path="C:/ti/TivaWare_C_Series-2.1.0.12573" -g --define=ccs="ccs" --define=PART_TM4C123GH6PM --define=TARGET_IS_BLIZZARD_RB1 --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="touch.pp"  "../touch.c"
-'Finished building: ../touch.c'
-' '
-'Building file: C:/ti/TivaWare_C_Series-2.1.0.12573/utils/ustdlib.c'
-'Invoking: ARM Compiler'
-"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 --abi=eabi -me --include_path="C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include" --include_path="C:/ti/TivaWare_C_Series-2.1.0.12573" -g --define=ccs="ccs" --define=PART_TM4C123GH6PM --define=TARGET_IS_BLIZZARD_RB1 --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="ustdlib.pp"  "C:/ti/TivaWare_C_Series-2.1.0.12573/utils/ustdlib.c"
-'Finished building: C:/ti/TivaWare_C_Series-2.1.0.12573/utils/ustdlib.c'
+"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 --abi=eabi -me --include_path="C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include" --include_path="C:/ti/TivaWare_C_Series-2.1.0.12573" -g --define=ccs="ccs" --define=PART_TM4C123GH6PM --define=TARGET_IS_BLIZZARD_RB1 --display_error_number --diag_warning=225 --diag_wrap=off --preproc_with_compile --preproc_dependency="RPSS_display_driver.pp"  "../RPSS_display_driver.c"
+'Finished building: ../RPSS_display_driver.c'
 ' '
 'Building target: lab10.out'
 'Invoking: ARM Linker'
-"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 --abi=eabi -me -g --define=ccs="ccs" --define=PART_TM4C123GH6PM --define=TARGET_IS_BLIZZARD_RB1 --display_error_number --diag_warning=225 --diag_wrap=off -z -m"lab10.map" --heap_size=0 --stack_size=1024 -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/lib" -i"{TIVAWARE_INSTALL}" -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="lab10_linkInfo.xml" --rom_model -o "lab10.out" "./Kentec320x240x16_ssd2119_8bit.obj" "./grlib_demo.obj" "./images.obj" "./tm4c123gh6pm_startup_ccs.obj" "./touch.obj" "./ustdlib.obj" "C:/ti/TivaWare_C_Series-2.1.0.12573/driverlib/ccs/Debug/driverlib.lib" "C:/ti/TivaWare_C_Series-2.1.0.12573/grlib/ccs/Debug/grlib.lib" "../grlib_demo_ccs.cmd"  -l"libc.a" 
+"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 --abi=eabi -me -g --define=ccs="ccs" --define=PART_TM4C123GH6PM --define=TARGET_IS_BLIZZARD_RB1 --display_error_number --diag_warning=225 --diag_wrap=off -z -m"lab10.map" --heap_size=0 --stack_size=1024 -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/lib" -i"{TIVAWARE_INSTALL}" -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="lab10_linkInfo.xml" --rom_model -o "lab10.out" "./Kentec320x240x16_ssd2119_8bit.obj" "./RPSS_System.obj" "./RPSS_display_driver.obj" "./RPSS_handler.obj" "./RPSS_main.obj" "./images.obj" "./tm4c123gh6pm_startup_ccs.obj" "./touch.obj" "./ustdlib.obj" "C:/ti/TivaWare_C_Series-2.1.0.12573/driverlib/ccs/Debug/driverlib.lib" "C:/ti/TivaWare_C_Series-2.1.0.12573/grlib/ccs/Debug/grlib.lib" "../grlib_demo_ccs.cmd"  -l"libc.a" 
 <Linking>
 'Finished building target: lab10.out'
 ' '
