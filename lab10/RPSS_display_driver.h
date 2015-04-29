@@ -5,5 +5,6 @@
 int init_display(void);
 void wait_for_touch(void);
 void display_intro(void);
+void display_waiting_time(void);
 
 #endif

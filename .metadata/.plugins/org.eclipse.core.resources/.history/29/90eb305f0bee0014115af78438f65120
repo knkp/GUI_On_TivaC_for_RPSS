@@ -1,0 +1,107 @@
+#include "RPSS_System.h"
+
+void init_uart(void){
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
+
+    GPIOPinConfigure(GPIO_PA0_U0RX);
+    GPIOPinConfigure(GPIO_PA1_U0TX);
+    GPIOPinTypeUART(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_1);
+
+    UARTConfigSetExpClk(UART0_BASE, SysCtlClockGet(), 9600,
+        (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE));
+
+}
+
+/*
+ * This handles sending data to the peripheral controller
+ * and it's responses, although a bit of a simpler role,
+ * it also handles data when it is sending/receiving to the
+ * pi manager as well.
+ * --- Stephen Copeland 4/28/2015
+ */
+RPSS_States update_peripheral_controller(RPSS_States state){
+	char result;
+
+	switch(state){
+		case GOT_NEW_PATRON:
+			result = uart_transceiver(CHECK_DATABASE);
+			switch(result){
+				case USER_IN_DATABASE:
+					state = IN_DATABASE;
+					break;
+				case USER_NOT_IN_DATABASE:
+					state = NOT_IN_DATABASE;
+					break;
+				default:
+					state = ERROR;
+				}
+			break;
+		case IN_DATABASE:
+			result = uart_transceiver(CHECK_BREATHALYZER);
+			switch(result){
+				case BREATHALYZER_TEST_PASS:
+					state = BREATHALYZER_PASS;
+					break;
+				case BREATHALYZER_TEST_FAIL:
+					state = BREATHALYZER_FAIL;
+					break;
+				default:
+					state = ERROR;
+			}
+			break;
+		case NOT_IN_DATABASE:
+			result = uart_transceiver(REGISTER_PATRON);
+			switch(result){
+				case PATRON_REGISTERED_SUCCESSFULLY:
+					state = DEFAULT;
+					break;
+				default:
+					state = ERROR;
+			}
+			break;
+		case BREATHALYZER_PASS:
+			result = uart_transceiver(RELEASE_PATRON);
+			switch(result){
+				case RELEASED:
+					state = OUTRO
+					break;
+				default:
+					state = ERROR;
+			}
+			break;
+		case BREATHALYZER_FAIL:
+			result = uart_transceiver(BREATHALYZER_TEST_FAIL);
+			switch(result){
+				case TAXI_DEPLOYED;
+				state =
+			}
+			break;
+		case DEFAULT:
+			break;
+		case MAINTENANCE:
+			break;
+		default:
+			break;
+	}
+
+	return state;
+}
+
+/*
+ * The system is designed so that if it sends a character,
+ * it will block until it gets one back in return,
+ * this is a basic method for keeping the two machines in sync
+ * (technically three if you consider the the RPSS_pi_manager
+ * --- Stephen Copeland 4/28/2015
+ */
+char uart_transceive(char c){
+
+	UARTCharPut(GPIO_PORTA_BASE, c);
+
+	while(!UARTCharsAvail(GPIO_PORTA_BASE));
+
+	c = UARTCharGet(GPIO_PORTA_BASE);
+
+	return c;
+}

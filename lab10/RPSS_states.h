@@ -3,9 +3,10 @@ typedef enum {
 	IN_DATABASE,
 	NOT_IN_DATABASE,
 	REGISTER,            // arduino will do most of the work in this case as the peripheral controller go back to default state after return successful
-	CHECK_BREATHALZYER,
 	BREATHALYZER_PASS,
 	BREATHALYZER_FAIL,
+	OUTRO,
 	DEFAULT,
-	MAINTENANCE
+	MAINTENANCE,
+	ERROR
 } RPSS_States;

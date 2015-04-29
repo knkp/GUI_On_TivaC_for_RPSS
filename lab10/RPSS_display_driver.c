@@ -51,7 +51,6 @@ int init_display(){
 	sRect.i16XMax = 318;
 	sRect.i16YMax = 238;
 
-    SysCtlClockSet(SYSCTL_SYSDIV_4 | SYSCTL_USE_PLL | SYSCTL_OSC_MAIN | SYSCTL_XTAL_16MHZ);
 
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3);
@@ -117,6 +116,13 @@ void display_intro(){
 	notTouched = 1;
 }
 
+void display_outro(){
+
+}
+
+void display_waiting_time(){
+
+}
 static void ClrScreen()
 {
    sRect.i16XMin = 0;
