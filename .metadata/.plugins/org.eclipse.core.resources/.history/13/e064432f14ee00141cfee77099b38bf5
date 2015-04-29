@@ -8,8 +8,11 @@ CG_TOOL_ROOT := C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2
 
 ORDERED_OBJS += \
 "./Kentec320x240x16_ssd2119_8bit.obj" \
+"./RPSS_System.obj" \
+"./RPSS_display_driver.obj" \
 "./RPSS_handler.obj" \
 "./RPSS_main.obj" \
+"./RPSS_uart_driver.obj" \
 "./images.obj" \
 "./tm4c123gh6pm_startup_ccs.obj" \
 "./touch.obj" \
@@ -142,8 +145,8 @@ lab10.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "Kentec320x240x16_ssd2119_8bit.pp" "RPSS_handler.pp" "RPSS_main.pp" "images.pp" "tm4c123gh6pm_startup_ccs.pp" "touch.pp" "ustdlib.pp" 
-	-$(RM) "Kentec320x240x16_ssd2119_8bit.obj" "RPSS_handler.obj" "RPSS_main.obj" "images.obj" "tm4c123gh6pm_startup_ccs.obj" "touch.obj" "ustdlib.obj" 
+	-$(RM) "Kentec320x240x16_ssd2119_8bit.pp" "RPSS_System.pp" "RPSS_display_driver.pp" "RPSS_handler.pp" "RPSS_main.pp" "RPSS_uart_driver.pp" "images.pp" "tm4c123gh6pm_startup_ccs.pp" "touch.pp" "ustdlib.pp" 
+	-$(RM) "Kentec320x240x16_ssd2119_8bit.obj" "RPSS_System.obj" "RPSS_display_driver.obj" "RPSS_handler.obj" "RPSS_main.obj" "RPSS_uart_driver.obj" "images.obj" "tm4c123gh6pm_startup_ccs.obj" "touch.obj" "ustdlib.obj" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

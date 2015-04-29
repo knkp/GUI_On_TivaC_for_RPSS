@@ -1,8 +1,7 @@
 #include "RPSS_display_driver.h"
 #include <stdint.h>
 #include <stdbool.h>
-//#include "image_example.h"  // this is the default image for the example -- Stephen Copeland (4/28/2015)
-#include "alcoholPic.h"
+#include "image_example.h"
 #include "inc/hw_memmap.h"
 #include "inc/hw_types.h"
 #include "driverlib/interrupt.h"
@@ -18,7 +17,7 @@
 extern tCanvasWidget g_sBackground;
 extern tPushButtonWidget g_sPushBtn;
 
-extern const uint8_t alcoholPic[];
+extern const uint8_t prettyImage[];
 tContext sContext;
 tRectangle sRect;
 int notTouched = 1;
@@ -97,7 +96,7 @@ void wait_for_touch(){
 
 void display_intro(){
 	ClrScreen();
-    GrImageDraw(&sContext, alcoholPic, 0, 0);
+    GrImageDraw(&sContext, prettyImage, 0, 0);
     GrFlush(&sContext);
 
 	GrContextForegroundSet(&sContext, ClrBlue);

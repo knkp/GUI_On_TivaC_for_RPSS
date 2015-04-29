@@ -19,7 +19,7 @@ RPSS_display_driver.obj: C:/ti/TivaWare_C_Series-2.1.0.12573/driverlib/gpio.h
 RPSS_display_driver.obj: C:/ti/TivaWare_C_Series-2.1.0.12573/driverlib/pin_map.h
 RPSS_display_driver.obj: C:/ti/TivaWare_C_Series-2.1.0.12573/driverlib/sysctl.h
 RPSS_display_driver.obj: C:/ti/TivaWare_C_Series-2.1.0.12573/driverlib/uart.h
-RPSS_display_driver.obj: ../image_example.h
+RPSS_display_driver.obj: ../alcoholPic.h
 RPSS_display_driver.obj: C:/ti/TivaWare_C_Series-2.1.0.12573/grlib/grlib.h
 RPSS_display_driver.obj: C:/ti/TivaWare_C_Series-2.1.0.12573/driverlib/interrupt.h
 RPSS_display_driver.obj: C:/ti/TivaWare_C_Series-2.1.0.12573/grlib/widget.h
@@ -47,7 +47,7 @@ C:/ti/TivaWare_C_Series-2.1.0.12573/driverlib/gpio.h:
 C:/ti/TivaWare_C_Series-2.1.0.12573/driverlib/pin_map.h: 
 C:/ti/TivaWare_C_Series-2.1.0.12573/driverlib/sysctl.h: 
 C:/ti/TivaWare_C_Series-2.1.0.12573/driverlib/uart.h: 
-../image_example.h: 
+../alcoholPic.h: 
 C:/ti/TivaWare_C_Series-2.1.0.12573/grlib/grlib.h: 
 C:/ti/TivaWare_C_Series-2.1.0.12573/driverlib/interrupt.h: 
 C:/ti/TivaWare_C_Series-2.1.0.12573/grlib/widget.h: 
