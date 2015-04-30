@@ -1,7 +1,11 @@
 
-**** Build of configuration Debug for project lab10 ****
+**** Clean-only build of configuration Debug for project lab10 ****
 
-"C:\\ti\\ccsv6\\utils\\bin\\gmake" -k all 
-gmake: Nothing to be done for `all'.
+"C:\\ti\\ccsv6\\utils\\bin\\gmake" -k clean 
+DEL /F  "lab10.out" 
+DEL /F "Kentec320x240x16_ssd2119_8bit.pp" "RPSS_System.pp" "RPSS_display_driver.pp" "RPSS_handler.pp" "RPSS_main.pp" "RPSS_uart_driver.pp" "images.pp" "tm4c123gh6pm_startup_ccs.pp" "touch.pp" "ustdlib.pp" 
+DEL /F "Kentec320x240x16_ssd2119_8bit.obj" "RPSS_System.obj" "RPSS_display_driver.obj" "RPSS_handler.obj" "RPSS_main.obj" "RPSS_uart_driver.obj" "images.obj" "tm4c123gh6pm_startup_ccs.obj" "touch.obj" "ustdlib.obj" 
+'Finished clean'
+' '
 
 **** Build Finished ****

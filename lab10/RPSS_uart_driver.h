@@ -31,6 +31,7 @@
 #define TAXI_DEPLOYED 'l'
 #define DEFAULT_STATUS 'm'
 #define DEFAULT_ACK 'n'
+#define ERROR_STATE 'o'
 
 
 /*

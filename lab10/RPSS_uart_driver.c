@@ -41,6 +41,9 @@ RPSS_States update_peripheral_controller(RPSS_States state){
 				case USER_NOT_IN_DATABASE:
 					state = NOT_IN_DATABASE;
 					break;
+				case MAINTENANCE_MODE:
+					state = MAINTENANCE;
+					break;
 				default:
 					state = ERROR;
 				}
@@ -54,6 +57,9 @@ RPSS_States update_peripheral_controller(RPSS_States state){
 				case BREATHALYZER_TEST_FAIL:
 					state = BREATHALYZER_FAIL;
 					break;
+				case MAINTENANCE_MODE:
+					state = MAINTENANCE;
+					break;
 				default:
 					state = ERROR;
 			}
@@ -63,6 +69,9 @@ RPSS_States update_peripheral_controller(RPSS_States state){
 			switch(result){
 				case PATRON_REGISTERED_SUCCESSFULLY:
 					state = DEFAULT;
+					break;
+				case MAINTENANCE_MODE:
+					state = MAINTENANCE;
 					break;
 				default:
 					state = ERROR;
@@ -74,6 +83,9 @@ RPSS_States update_peripheral_controller(RPSS_States state){
 				case RELEASED:
 					state = OUTRO;
 					break;
+				case MAINTENANCE_MODE:
+					state = MAINTENANCE;
+					break;
 				default:
 					state = ERROR;
 			}
@@ -83,6 +95,9 @@ RPSS_States update_peripheral_controller(RPSS_States state){
 			switch(result){
 				case TAXI_DEPLOYED:
 					state = BREATHALYZER_PASS;
+					break;
+				case MAINTENANCE_MODE:
+					state = MAINTENANCE;
 					break;
 				default:
 					state = ERROR;
@@ -94,14 +109,32 @@ RPSS_States update_peripheral_controller(RPSS_States state){
 				case DEFAULT_ACK:
 					state = GOT_NEW_PATRON;
 					break;
+				case MAINTENANCE_MODE:
+					state = MAINTENANCE;
+					break;
 				default:
 					state = ERROR;
 			}
 			break;
 		case MAINTENANCE:
+			result = uart_transceiver(MAINTENANCE_MODE);
+			switch(result){
+				case DEFAULT_ACK:
+					state = DEFAULT;
+					break;
+				default:
+					state = ERROR;
+			}
 			break;
 		default:
-			break;
+			result = uart_transceiver(ERROR_STATE);
+			switch(result){
+				case DEFAULT_ACK:
+					state = DEFAULT;
+					break;
+				default:
+					state = ERROR;
+			}
 	}
 
 	return state;
