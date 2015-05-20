@@ -31,6 +31,7 @@
 #define TAXI_DEPLOYED 'l'
 #define DEFAULT_STATUS 'm'
 #define DEFAULT_ACK 'n'
+#define WIND_NOT_REACHED 'p'
 #define ERROR_STATE 'o'
 
 

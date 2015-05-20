@@ -12,6 +12,7 @@ void display_welcome(void);
 void display_release_items(void);
 void display_database_check(void);
 void display_registration(void);
+void display_failed_to_get_breath(void);
 void display_error_state(void);
 void display_maintenance_mode(void);
 

@@ -30,6 +30,10 @@ RPSS_States RPSS_Handler(RPSS_States state){
 			display_outro();
 			state = DEFAULT;
 			break;
+		case WIND_THRESHOLD_NOT_REACHED:
+			display_failed_to_get_breath();
+			state = OUTRO;
+			break;
 		case MAINTENANCE:
 			display_maintenance_mode();
 			state = update_peripheral_controller(MAINTENANCE); // wait for command to leave maintenance mode

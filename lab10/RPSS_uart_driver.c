@@ -60,6 +60,9 @@ RPSS_States update_peripheral_controller(RPSS_States state){
 				case MAINTENANCE_MODE:
 					state = MAINTENANCE;
 					break;
+				case WIND_NOT_REACHED:
+					state = WIND_THRESHOLD_NOT_REACHED;
+					break;
 				default:
 					state = ERROR;
 			}

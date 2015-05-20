@@ -141,7 +141,7 @@ void display_outro(){
 	GrContextForegroundSet(&sContext, ClrWhite);
 	GrRectDraw(&sContext, &sRect);
 	GrFlush(&sContext);
-	SysCtlDelay(SysCtlClockGet()*3);
+	SysCtlDelay(SysCtlClockGet()*3/2);
 }
 
 void display_waiting_time(){
@@ -264,6 +264,24 @@ void display_error_state(){
 	GrRectDraw(&sContext, &sRect);
 	GrFlush(&sContext);
 }
+
+void display_failed_to_get_breath(){
+	ClrScreen();
+    GrImageDraw(&sContext, alcoholPic, 0, 0);
+    GrFlush(&sContext);
+
+	GrContextForegroundSet(&sContext, ClrBlue);
+	GrContextFontSet(&sContext, &g_sFontCmss30b);
+	//GrStringDraw(&sContext, "Welome to", -1, 50, 25, 0);
+	GrStringDraw(&sContext, "The breathalyzer", -1, 50, 50, 0);
+	GrStringDraw(&sContext, "test was not used", -1, 45, 85, 0);
+	GrStringDraw(&sContext, "Please try again", -1, 50, 180, 0);
+	GrContextForegroundSet(&sContext, ClrWhite);
+	GrRectDraw(&sContext, &sRect);
+	GrFlush(&sContext);
+	SysCtlDelay(SysCtlClockGet()*3/2);
+}
+
 static void ClrScreen(){
 
    sRect.i16XMin = 0;
