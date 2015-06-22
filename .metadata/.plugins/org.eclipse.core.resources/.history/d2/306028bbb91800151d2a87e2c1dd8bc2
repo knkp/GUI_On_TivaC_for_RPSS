@@ -171,18 +171,12 @@ void send_id(char *ID){
 	UARTCharPut(UART0_BASE, 'i');
 
 	for(iterator = 0; iterator<length;iterator++){
-		// wait for acknowledgement then clear buffer
-		while(!UARTCharsAvail(UART0_BASE));
-		UARTCharGet(UART0_BASE);
-
-		// send next character in ID
 		UARTCharPut(UART0_BASE, ID[iterator]);
+/*		// wait for acknowledgement then clear buffer
+		while(!UARTCharsAvail(UART0_BASE));
+		UARTCharGet(UART0_BASE);*/ // -- this seems to cause more trouble than it's worth, we'll just slow the data down so the pi can catch it all -- SC
 
 	}
-
-	// wait for acknowledgement then clear buffer
-	while(!UARTCharsAvail(UART0_BASE));
-	UARTCharGet(UART0_BASE);
 
 	// tel Pi Manager (command relay) we have completed the ID
 	UARTCharPut(UART0_BASE, 'k');
