@@ -1,6 +1,7 @@
 #include "RPSS_display_driver.h"
 #include <stdint.h>
 #include <stdbool.h>
+#include <string.h>
 //#include "image_example.h"  // this is the default image for the example -- Stephen Copeland (4/28/2015)
 #include "alcoholPic.h"
 #include "inc/hw_memmap.h"
@@ -15,18 +16,37 @@
 #include "Kentec320x240x16_ssd2119_8bit.h"
 #include "touch.h"
 
+#define ID_MAX_SIZE  10
+
+char ID[ID_MAX_SIZE];
+
 extern tCanvasWidget g_sBackground;
 extern tPushButtonWidget g_sPushBtn;
+
+// ID button object handles
+extern tPushButtonWidget ID_button_1;
+extern tPushButtonWidget ID_button_2;
+extern tPushButtonWidget ID_button_3;
+extern tPushButtonWidget ID_button_4;
+extern tPushButtonWidget ID_enter_button;
+
+
 
 extern const uint8_t alcoholPic[];
 tContext sContext;
 tRectangle sRect;
 int notTouched = 1;
+int IDNotSent = 1;
+int ID_place_in_array = 0;
 
 static void ClrScreen(void);
 
 static void OnButtonPress(tWidget *pWidget);
-
+static void OnIDButton1Press(tWidget *pWidget);
+static void OnIDButton2Press(tWidget *pWidget);
+static void OnIDButton3Press(tWidget *pWidget);
+static void OnIDButton4Press(tWidget *pWidget);
+static void ID_EnterButton_Press(tWidget *pWidget);
 /*
 Canvas(g_sHeading, &g_sBackground, 0, &g_sPushBtn,
        &g_sKentec320x240x16_SSD2119, 0, 0, 320, 23,
@@ -48,10 +68,64 @@ RectangularButton(g_sPushBtn, WIDGET_ROOT, 0, 0,
                   &g_sKentec320x240x16_SSD2119, //60, 60, 200, 40,
 				  0, 0, 320,240,
                   //(PB_STYLE_OUTLINE | PB_STYLE_TEXT_OPAQUE | PB_STYLE_TEXT |
-                 //  PB_STYLE_FILL),
-				  0,
+                  // PB_STYLE_FILL),
+				   0,
 				   ClrGray, ClrWhite, ClrRed, ClrRed,
                    g_psFontCmss22b, "Toggle red LED", 0, 0, 0, 0, OnButtonPress);
+
+// note what might be called the "handle" for the object is g_sPushBtn, and the callback function is OnButtonPress
+RectangularButton(ID_button_1, WIDGET_ROOT, 0, 0,
+                  &g_sKentec320x240x16_SSD2119, //60, 60, 200, 40,
+				  //0, 0, 320,240,  -- covers the whole screen, this is for the init handler
+				  0, 0, (320/2),(240/2)-(75/2),
+                  (PB_STYLE_OUTLINE | PB_STYLE_TEXT_OPAQUE | PB_STYLE_TEXT |
+                  PB_STYLE_FILL),
+				  //0,
+				   ClrGray, ClrWhite, ClrRed, ClrRed,
+                   g_psFontCmss22b, "1", 0, 0, 0, 0, OnIDButton1Press);
+
+// note what might be called the "handle" for the object is g_sPushBtn, and the callback function is OnButtonPress
+RectangularButton(ID_button_2, WIDGET_ROOT, 0, 0,
+                  &g_sKentec320x240x16_SSD2119, //60, 60, 200, 40,
+				  //0, 0, 320,240,  -- covers the whole screen, this is for the init handler
+				  (320/2), 0, (320/2),(240/2)-(75/2),
+				 (PB_STYLE_OUTLINE | PB_STYLE_TEXT_OPAQUE | PB_STYLE_TEXT |
+                   PB_STYLE_FILL),
+				  //0,
+				   ClrGray, ClrWhite, ClrRed, ClrRed,
+                   g_psFontCmss22b, "2", 0, 0, 0, 0, OnIDButton2Press);
+
+// note what might be called the "handle" for the object is g_sPushBtn, and the callback function is OnButtonPress
+RectangularButton(ID_button_3, WIDGET_ROOT, 0, 0,
+                  &g_sKentec320x240x16_SSD2119, //60, 60, 200, 40,
+				  //0, 0, 320,240,  -- covers the whole screen, this is for the init handler
+				  0, (240/2)-(75/2),(320/2),(240/2)-(75/2),
+                  (PB_STYLE_OUTLINE | PB_STYLE_TEXT_OPAQUE | PB_STYLE_TEXT |
+                   PB_STYLE_FILL),
+				 // 0,
+				   ClrGray, ClrWhite, ClrRed, ClrRed,
+                   g_psFontCmss22b, "3", 0, 0, 0, 0, OnIDButton3Press);
+
+// note what might be called the "handle" for the object is g_sPushBtn, and the callback function is OnButtonPress
+RectangularButton(ID_button_4, WIDGET_ROOT, 0, 0,
+                  &g_sKentec320x240x16_SSD2119, //60, 60, 200, 40,
+				  //0, 0, 320,240,  -- covers the whole screen, this is for the init handler
+				  (320/2), (240/2)-(75/2), (320/2),(240/2)-(75/2),
+                  (PB_STYLE_OUTLINE | PB_STYLE_TEXT_OPAQUE | PB_STYLE_TEXT |
+                   PB_STYLE_FILL),
+				  //0,
+				   ClrGray, ClrWhite, ClrRed, ClrRed,
+                   g_psFontCmss22b, "4", 0, 0, 0, 0, OnIDButton4Press);
+RectangularButton(ID_enter_button, WIDGET_ROOT, 0, 0,
+                  &g_sKentec320x240x16_SSD2119, //60, 60, 200, 40,
+				  //0, 0, 320,240,  -- covers the whole screen, this is for the init handler
+				  0, (240-75), 320,75,
+                  (PB_STYLE_OUTLINE | PB_STYLE_TEXT_OPAQUE | PB_STYLE_TEXT |
+                   PB_STYLE_FILL),
+				  //0,
+				   ClrGray, ClrWhite, ClrRed, ClrRed,
+                   g_psFontCmss22b, "Click After ID Entered", 0, 0, 0, 0, ID_EnterButton_Press);
+
 
 bool g_RedLedOn = false;
 
@@ -81,10 +155,108 @@ int init_display(){
 
     WidgetPaint(WIDGET_ROOT);
 
+    // initiatlize ID to zero
+    int iterator;
+    for(iterator=0; iterator<ID_MAX_SIZE;iterator++)
+    {
+    	ID[iterator] = 0;
+    }
+
+
     return 0;
 
 }
 
+static int init_registration_keyPad()
+{
+	WidgetRemove((tWidget *)&g_sPushBtn);
+
+	WidgetAdd(WIDGET_ROOT, (tWidget *)&ID_button_1);
+	WidgetAdd(WIDGET_ROOT, (tWidget *)&ID_button_2);
+	WidgetAdd(WIDGET_ROOT, (tWidget *)&ID_button_3);
+	WidgetAdd(WIDGET_ROOT, (tWidget *)&ID_button_4);
+	WidgetAdd(WIDGET_ROOT, (tWidget *)&ID_enter_button);
+
+	WidgetPaint(WIDGET_ROOT);
+
+	return 0;
+
+}
+
+static int reset_display_for_new_patron()
+{
+
+	WidgetRemove((tWidget *)&ID_button_1);
+	WidgetRemove((tWidget *)&ID_button_2);
+	WidgetRemove((tWidget *)&ID_button_3);
+	WidgetRemove((tWidget *)&ID_button_4);
+	WidgetRemove((tWidget *)&ID_enter_button);
+
+	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sPushBtn);
+
+	WidgetPaint(WIDGET_ROOT);
+
+	return 0;
+
+
+}
+
+// these buttons are for when the user is attempting to register or get keys out of the system
+// the fingerprint scanner would have handled this for us almost automatically, but the hardware has proven
+// quite unreliable - thus I am implemting this system instead as a substitute method for ID'ing a user.
+
+static void OnIDButton1Press(tWidget *pWidget)
+{
+	if(ID_place_in_array<ID_MAX_SIZE)
+	{
+		ID[ID_place_in_array]='1';
+		ID_place_in_array++;
+	}
+}
+
+static void OnIDButton2Press(tWidget *pWidget)
+{
+	if(ID_place_in_array<ID_MAX_SIZE)
+		{
+			ID[ID_place_in_array]='2';
+			ID_place_in_array++;
+		}
+}
+
+static void OnIDButton3Press(tWidget *pWidget)
+{
+	if(ID_place_in_array<ID_MAX_SIZE)
+		{
+			ID[ID_place_in_array]='3';
+			ID_place_in_array++;
+		}
+}
+
+static void OnIDButton4Press(tWidget *pWidget)
+{
+	if(ID_place_in_array<ID_MAX_SIZE)
+		{
+			ID[ID_place_in_array]='4';
+			ID_place_in_array++;
+		}
+}
+
+static void ID_EnterButton_Press(tWidget *pWidget)
+{
+	ID[ID_place_in_array]='\0';
+	send_id(ID);
+
+	// clear ID, reset ID_place_in_array
+	for(ID_place_in_array; ID_place_in_array >0; ID_place_in_array-- )
+	{
+		ID[ID_place_in_array]=0;
+	}
+
+	// release state
+	IDNotSent = 0;
+}
+
+// this is for the initial message
 
 static void OnButtonPress(tWidget *pWidget)
 {
@@ -105,6 +277,20 @@ static void OnButtonPress(tWidget *pWidget)
 
 void wait_for_touch(){
 	WidgetMessageQueueProcess();
+}
+
+void display_get_ID(){
+	ClrScreen();
+
+    init_registration_keyPad();
+
+    while(IDNotSent){
+    	wait_for_touch();
+    }
+
+    IDNotSent = 1;
+
+    reset_display_for_new_patron();
 }
 
 void display_intro(){

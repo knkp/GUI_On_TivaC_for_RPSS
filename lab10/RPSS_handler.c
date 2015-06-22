@@ -1,5 +1,6 @@
 #include "RPSS_System.h"
 
+
 RPSS_States RPSS_Handler(RPSS_States state){
 	switch(state){
 		case GOT_NEW_PATRON:
@@ -23,8 +24,10 @@ RPSS_States RPSS_Handler(RPSS_States state){
 			state = update_peripheral_controller(BREATHALYZER_FAIL);
 			break;
 		case DEFAULT:
-			display_intro();
-			state = update_peripheral_controller(DEFAULT);
+			display_get_ID();
+			//display_intro();
+			//state = update_peripheral_controller(DEFAULT);
+			state = DEFAULT;
 			break;
 		case OUTRO:
 			display_outro();

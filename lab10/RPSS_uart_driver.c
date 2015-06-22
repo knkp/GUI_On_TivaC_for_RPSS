@@ -1,5 +1,5 @@
 #include "RPSS_System.h"
-
+#include <string.h>
 
 /*
  * Initialize the system, such that the uart runs at 9600 baud, using
@@ -27,7 +27,6 @@ void init_uart(void){
  * pi manager as well.
  * --- Stephen Copeland 4/28/2015
  */
-
 RPSS_States update_peripheral_controller(RPSS_States state){
 	char result;
 
@@ -161,3 +160,25 @@ char uart_transceiver(char c){
 
 	return c;
 }
+
+
+void send_id(char *ID){
+
+	int length = strlen(ID);
+	int iterator = 0;
+
+	// tell Pi manager (command relay) that we are about to send it an ID
+	UARTCharPut(UART0_BASE, 'i');
+
+	for(iterator = 0; iterator<length;iterator++){
+		UARTCharPut(UART0_BASE, ID[iterator]);
+/*		// wait for acknowledgement then clear buffer
+		while(!UARTCharsAvail(UART0_BASE));
+		UARTCharGet(UART0_BASE);*/ // -- this seems to cause more trouble than it's worth, we'll just slow the data down so the pi can catch it all -- SC
+
+	}
+
+	// tel Pi Manager (command relay) we have completed the ID
+	UARTCharPut(UART0_BASE, 'k');
+}
+

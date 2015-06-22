@@ -19,6 +19,7 @@ RPSS_uart_driver.obj: C:/ti/TivaWare_C_Series-2.1.0.12573/driverlib/gpio.h
 RPSS_uart_driver.obj: C:/ti/TivaWare_C_Series-2.1.0.12573/driverlib/pin_map.h
 RPSS_uart_driver.obj: C:/ti/TivaWare_C_Series-2.1.0.12573/driverlib/sysctl.h
 RPSS_uart_driver.obj: C:/ti/TivaWare_C_Series-2.1.0.12573/driverlib/uart.h
+RPSS_uart_driver.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include/string.h
 
 ../RPSS_uart_driver.c: 
 ../RPSS_System.h: 
@@ -39,3 +40,4 @@ C:/ti/TivaWare_C_Series-2.1.0.12573/driverlib/gpio.h:
 C:/ti/TivaWare_C_Series-2.1.0.12573/driverlib/pin_map.h: 
 C:/ti/TivaWare_C_Series-2.1.0.12573/driverlib/sysctl.h: 
 C:/ti/TivaWare_C_Series-2.1.0.12573/driverlib/uart.h: 
+C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include/string.h: 

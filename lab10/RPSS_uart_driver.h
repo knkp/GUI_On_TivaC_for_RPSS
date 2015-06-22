@@ -44,5 +44,5 @@
 void init_uart(void);
 RPSS_States update_peripheral_controller(RPSS_States);
 char uart_transceiver(char);
-
+void send_id(char *);
 #endif
